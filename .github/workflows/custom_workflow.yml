@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  deploy-development:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && contains(github.event.pull_request.base.ref, 'develop')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Development
+        run: |
+          echo "Deploying to Development"
+          # Add your deployment script or commands for development environment here
+
+  deploy-staging:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && contains(github.event.pull_request.base.ref, 'main')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Staging
+        run: |
+          echo "Deploying to Staging"
+          # Add your deployment script or commands for staging environment here
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && contains(github.event.pull_request.base.ref, 'main')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production
+        run: |
+          echo "Deploying to Production"
+          # Add your deployment script or commands for production environment here
