@@ -1,0 +1,63 @@
+# Deploys Azure Static Web App for Lazaza App Frontend
+name: Deploy
+
+on:
+  # Workflow Call Event allows us to trigger this workflow from another workflow - uses GH Secrets/Variables
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+        default: "development"
+      key_vault_name:
+        required: false
+        type: string
+
+  # Workflow Dispatch Event allows us to trigger this workflow manually or remotely from the Actions tab - uses GH Inputs
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: string
+        default: "development"
+      key_vault_name:
+        required: true
+        type: string
+        default: ""
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Echo Environment
+        run: echo "${{ inputs.environment }}"
+
+      # Login to Azure using Azure Credentials stored in GitHub Secrets
+      - name: Azure Login
+        run: echo "Mock Login to Azure"
+
+      # Get Action Environment Variables based on Inputs
+      - name: Get Key Vault Secrets with Inputs
+        run: echo "Mock Get Key Vault Secrets with Inputs"
+
+        # Get Action Environment Variables based on Secrets
+      - name: Get Key Vault with Secrets
+        run: echo "Mock Get Key Vault with Secrets"
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      # Install Dependency packages
+      - name: Install Dependencies
+        run: echo "Mock Install Dependencies"
+
+      # Build and Deploy to Azure Static Web App
+      - name: Deploy
+        run: echo "Mock Deploy"
+
+      - name: Close Pull Request
+        run: echo "Mock Close Pull Request"
