@@ -6,8 +6,14 @@ on:
       - develop
 
 jobs:
-  testing-job:
+  Deploying-to-Development:
     runs-on: ubuntu-latest
     steps:
-      - name: first step
-        run: echo "first step"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Checkout to fetaure branch
+        run: git checkout ${{github.event.pull_request.head.ref}}
+
+      - name: deploying to development
+        run: echo "deployed to development"
