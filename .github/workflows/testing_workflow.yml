@@ -1,0 +1,13 @@
+name: testing
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  testing-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: first step
+        run: echo "first step"
