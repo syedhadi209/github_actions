@@ -3,7 +3,7 @@ name: Automated Release
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   release:
@@ -19,7 +19,7 @@ jobs:
           node-version: 14
 
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
       - name: Run tests
         run: npm test
