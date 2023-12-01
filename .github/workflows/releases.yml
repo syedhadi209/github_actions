@@ -1,0 +1,45 @@
+name: Automated Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Bump version and generate release notes
+        run: npx standard-version --skip.changelog
+
+      - name: Generate Release Notes
+        id: release_notes
+        run: |
+          echo "## Features\n$(git log --merges --pretty=format:'- %s (%b)' ${{ github.event.before }}..HEAD)\n\n## Bug Fixes\n$(git log --pretty=format:'- %s (%b)' ${{ github.event.before }}..HEAD)" > release_notes.txt
+          cat release_notes.txt >> CHANGELOG.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/*
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
