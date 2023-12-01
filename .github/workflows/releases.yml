@@ -48,12 +48,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Notify Teams
-        if: success()
-        uses: microsoft/teams-notification@v1
-        with:
-          webhook-url: ${{ secrets.TEAMS_WEBHOOK }}
-          message: |
-            🚀 New release v${{ steps.release.outputs.version }} is live!
-            Release Notes: [View Release Notes](https://github.com/${{ github.repository }}/releases/tag/v${{ steps.release.outputs.version }})
