@@ -13,13 +13,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 14
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
+
+      - name: Run tests
+        run: npm test
 
       - name: Build
         run: npm run build
@@ -43,6 +52,9 @@ jobs:
         with:
           files: build/*
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v0.1.0
+          tag: v${{ steps.release.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push tag to GitHub
+        run: git push origin v${{ steps.release.outputs.version }}
