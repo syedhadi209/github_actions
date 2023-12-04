@@ -1,3 +1,6 @@
+
+![example workflow](https://github.com/syedhadi209/github_actions/actions/workflows/releases.yml/badge.svg?event=push)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
