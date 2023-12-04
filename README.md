@@ -1,4 +1,4 @@
-![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+![example workflow](https://github.com/syedhadi209/github_actions/actions/workflows/releases.yml/badge.svg)
 
 # Getting Started with Create React App
 
