@@ -1,3 +1,9 @@
+[![Build Status](https://img.shields.io/travis/your-username/your-repo.svg)](https://travis-ci.org/your-username/your-repo)
+[![Coverage](https://img.shields.io/codecov/c/github/your-username/your-repo.svg)](https://codecov.io/gh/your-username/your-repo)
+[![Netlify Development Status](https://api.netlify.com/api/v1/badges/development-site-id/deploy-status)](https://app.netlify.com/sites/development-site-name/deploys)
+[![Netlify Staging Status](https://api.netlify.com/api/v1/badges/staging-site-id/deploy-status)](https://app.netlify.com/sites/staging-site-name/deploys)
+[![Netlify Production Status](https://api.netlify.com/api/v1/badges/production-site-id/deploy-status)](https://app.netlify.com/sites/production-site-name/deploys)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
