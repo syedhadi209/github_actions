@@ -21,5 +21,19 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm test
+    - name: Run tests with coverage
+      run: npm test -- --coverage --watchAll=false
+
+    - name: Upload coverage to Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Generate coverage badge URL
+      id: generate_badge_url
+      run: echo "::set-output name=badge_url::https://img.shields.io/coveralls/github/${{ github.repository }}.svg"
+
+    - name: Update README with badge
+      run: |
+        echo "[![Coverage Status](${{ steps.generate_badge_url.outputs.badge_url }})](https://coveralls.io/github/${{ github.repository }})" > README.md
+      if: success()  
