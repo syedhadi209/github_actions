@@ -1,6 +1,7 @@
 
 ![example workflow](https://github.com/syedhadi209/github_actions/actions/workflows/releases.yml/badge.svg?event=push)
 ![Codecov](https://img.shields.io/codecov/c/github/syedhadi209/github-actions?token=086ba123-45d3-4e94-ab94-979c8f5242b8)
+[![codecov](https://codecov.io/gh/syedhadi209/github_actions/graph/badge.svg?token=RBMEL7W9P7)](https://codecov.io/gh/syedhadi209/github_actions)
 
 
 # Getting Started with Create React App
