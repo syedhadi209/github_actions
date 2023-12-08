@@ -2,6 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  function hello(){
+    console.log("hello");
+  }
+
+  function sum(a,b){
+    return a+b;
+  }
   return (
     <div className="App">
       <header className="App-header">
