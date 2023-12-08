@@ -24,16 +24,10 @@ jobs:
     - name: Run tests with coverage
       run: npm test -- --coverage --watchAll=false
 
-    - name: Generate coverage badge URL
-      id: generate_badge_url
-      run: |
-        COVERAGE_PERCENTAGE=$(npm explore npm run env --global COVERALLS_REPO_TOKEN=none npm exec -- istanbul report --root coverage text-summary | grep -E -o '[0-9]+\.[0-9]+' | head -n 1)
-        echo "::set-output name=badge_url::https://img.shields.io/badge/coverage-${COVERAGE_PERCENTAGE}%25-brightgreen.svg"
-
-    - name: Update README with badge
-      run: |
-        echo "[![Coverage Status](${{ steps.generate_badge_url.outputs.badge_url }})](./coverage/lcov-report/index.html)" > README.md
-      if: success()  # Only update README if previous steps are successful
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 
      
